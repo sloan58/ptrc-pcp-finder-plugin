@@ -1,225 +1,506 @@
 <style>
-    [x-cloak] {
-        display: none;
-    }
-</style>
+  [x-cloak] {
+    display: none;
+  }
 
+  /* Layout */
+  .container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    max-width: 36rem; /* max-w-xl */
+  }
+
+  /* Search form */
+  .search-label {
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #111827;
+  }
+
+  .search-container {
+    position: relative;
+  }
+
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 0.75rem;
+    transform: translateY(-50%);
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #6b7280;
+  }
+
+  .search-input {
+    display: block;
+    width: 100%;
+    padding: 1rem 1rem 1rem 2.5rem;
+    font-size: 0.875rem;
+    color: #111827;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    background-color: #f9fafb;
+  }
+
+  .search-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+  }
+
+  /* Buttons */
+  .button {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-align: center;
+    color: white;
+    background-color: #1d4ed8;
+    border-radius: 0.5rem;
+    border: none;
+  }
+
+  .button:hover {
+    background-color: #1e40af;
+  }
+
+  .button:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.5);
+  }
+
+  .button-secondary {
+    color: #2563eb;
+    background: none;
+    text-decoration: underline;
+  }
+
+  .button-secondary:hover {
+    color: #1d4ed8;
+  }
+
+  /* Results container */
+  .results-container {
+    margin-top: 0.25rem;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Tabs */
+  .tabs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-align: center;
+    color: #6b7280;
+    border-bottom: 1px solid #e5e7eb;
+    background-color: #f9fafb;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+
+  .tab-item {
+    flex-basis: 50%;
+  }
+
+  .tab-button {
+    display: inline-block;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .tab-button.active {
+    color: #2563eb;
+  }
+
+  .tab-button:hover:not(.active) {
+    color: #2563eb;
+  }
+
+  /* Tab content */
+  .tab-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem;
+  }
+
+  .tab-content.hidden {
+    display: none;
+  }
+
+  /* Typography */
+  .title {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+  }
+
+  .text {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #111827;
+    margin-bottom: 0.75rem;
+  }
+
+  .text:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Address list */
+  .address-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .address-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .address-item:last-child {
+    border-bottom: none;
+  }
+
+  .address-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #111827;
+    cursor: pointer;
+  }
+
+  .address-text:hover {
+    text-decoration: underline;
+  }
+
+  /* Loading spinner */
+  .spinner {
+    display: inline-block;
+    margin-right: 0.75rem;
+    width: 1rem;
+    height: 1rem;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Dark mode styles */
+  @media (prefers-color-scheme: dark) {
+    .search-input {
+      background-color: #374151;
+      border-color: #4b5563;
+      color: white;
+    }
+
+    .search-input::placeholder {
+      color: #9ca3af;
+    }
+
+    .results-container {
+      background-color: #374151;
+      border-color: #4b5563;
+    }
+
+    .tabs-list {
+      background-color: #1f2937;
+      border-color: #4b5563;
+      color: #9ca3af;
+    }
+
+    .title,
+    .subtitle,
+    .text,
+    .address-text {
+      color: white;
+    }
+
+    .address-item {
+      border-color: #4b5563;
+    }
+  }
+</style>
+<link rel="stylesheet" href="/dist/output.css" />
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 <div x-data="app()" x-cloak>
-
-    <div class="flex justify-center w-full">
-        <div class="flex flex-col justify-center w-full max-w-xl">
-            <form>
-                <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                <div class="relative">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                    </div>
-                    <input
-                            x-model="address"
-                            @keyup.debounce="search()"
-                            type="search"
-                            id="default-search"
-                            class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Enter your home address"
-                    >
-                    <button x-show="loading" type="submit"
-                            class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        <svg class="inline mr-3 w-4 h-4 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
-                            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
-                        </svg>
-                        Loading...
-                    </button>
-                    <div @click="clearResults()" x-show="locatedPrecinct"
-                            class="cursor-pointer text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Start Over
-                    </div>
-                </div>
-            </form>
-
-            <div x-show="locatedPrecinct" class="mt-1 w-full bg-white border rounded-lg shadow-md dark:bg-gray-700 dark:border-gray-700">
-                <ul
-                    style="list-style: none !important; padding-bottom: 0 !important; padding-left: 0 !important;"
-                    class="pb-0 list-none flex flex-wrap justify-between text-sm font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800"
-                    id="defaultTab"
-                    data-tabs-toggle="#defaultTabContent"
-                    role="tablist"
-                >
-                    <li class="basis-1/2">
-                        <button
-                            @click="openTab = 'committeePerson'"
-                            data-tabs-target="#about"
-                            type="button"
-                            role="tab"
-                            aria-controls="about"
-                            aria-selected="true"
-                            :class="openTab === 'committeePerson' ? 'text-blue-600' : 'hover:text-blue-600 dark:hover:text-gray-300'"
-                            class="inline-block p-4 text-center">
-                            Committee Persons
-                        </button>
-                    </li>
-                    <li class="basis-1/2">
-                        <button
-                            @click="openTab = 'pollingLocation'"
-                            data-tabs-target="#about"
-                            type="button"
-                            role="tab"
-                            aria-controls="about"
-                            aria-selected="true"
-                            :class="openTab === 'pollingLocation' ? 'text-blue-600' : 'hover:text-blue-600 dark:hover:text-gray-300'"
-                            class="inline-block p-4 text-center">
-                            Polling Location
-                        </button>
-                    </li>
-                </ul>
-                <div id="defaultTabContent">
-                    <div :class="openTab === 'committeePerson' ? '' : 'hidden'" class="flex flex-col items-center p-10">
-                        <a href="#">
-                            <h5 x-text="`Precinct ${precinct.districtName}`" class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"></h5>
-                        </a>
-                        <template x-for="person in precinct.pcp.committeePersons">
-                            <p x-text="person" class="text-xl font-normal text-gray-900 dark:text-white"></p>
-                        </template>
-                        <p class="mb-3 font-normal text-gray-900 dark:text-white mb-0 pb-0">You can reach your committee persons by phone or email</p>
-                        <p
-                            x-text="`Call: +17245551234 x${precinct.pcp.extension}`"
-                            class="mb-3 font-normal text-gray-900 dark:text-white mb-0 pb-0"
-                        ></p>
-                        <p
-                            x-text="`Email: ${precinct.pcp.email}`"
-                            class="mb-3 font-normal text-gray-900 dark:text-white"
-                        ></p>
-                        <div class="flex justify-between gap-4">
-                            <a :href="`tel:+17245551234,${precinct.pcp.extension}`" class="cursor-pointer inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                Call
-                            </a>
-                            <a :href="`mailto:${precinct.pcp.email}`" class="cursor-pointer inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                Email
-                            </a>
-                        </div>
-                    </div>
-                    <div :class="openTab === 'pollingLocation' ? '' : 'hidden'" class="p-4 rounded-lg md:p-8" id="services" role="tabpanel" aria-labelledby="services-tab">
-                        <h2
-                            x-text="precinct.location"
-                            class="text-2xl text-center font-extrabold tracking-tight text-gray-900 dark:text-white"
-                        ></h2>
-                        <div class="text-center">
-                            <p class="text-white pb-0" x-text="precinct.address_street"></p>
-                            <p class="text-white mb-4" x-text="`${precinct.address_munic}, PA ${precinct.address_zip}`"></p>
-                        </div>
-                        <img :src="precinct.photo_link" alt="" />
-                    </div>
-                </div>
-            </div>
-
-            <div x-show="searchResults.length" class="w-full max-w-xl p-4 mt-1 bg-white border rounded-lg shadow-md sm:p-8 dark:bg-gray-700 dark:border-gray-700">
-                <div class="flex items-center justify-between mb-4">
-                    <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Matching Addresses</h5>
-                    <div @click="clearResults()" class="cursor-pointer text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">
-                        Clear Results
-                    </div>
-                </div>
-                <div class="flow-root">
-                    <ul style="list-style: none !important;" role="list" class="list-none divide-y divide-gray-200 dark:divide-gray-700">
-                        <template x-for="result in searchResults">
-                            <li class="py-3 sm:py-4">
-                                <div class="flex items-center space-x-4">
-                                    <div class="flex-1 min-w-0">
-                                        <p @click="getAddressDetails(result.text, result.magicKey)" x-text="result.text" class="text-sm font-medium text-gray-900 truncate hover:underline cursor-pointer dark:text-white"></p>
-                                    </div>
-                                </div>
-                            </li>
-                        </template>
-                    </ul>
-                </div>
-            </div>
+  <div class="container">
+    <div class="content-wrapper">
+      <form>
+        <label for="default-search" class="search-label">Search</label>
+        <div class="search-container">
+          <div class="search-icon">
+            <svg
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              ></path>
+            </svg>
+          </div>
+          <input
+            x-model="address"
+            @keyup.debounce="search()"
+            type="search"
+            id="default-search"
+            class="search-input"
+            placeholder="Enter your home address"
+          />
+          <button x-show="loading" type="submit" class="button">
+            <svg
+              class="spinner"
+              viewBox="0 0 100 101"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                fill="#E5E7EB"
+              />
+              <path
+                d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                fill="currentColor"
+              />
+            </svg>
+            Loading...
+          </button>
+          <div @click="clearResults()" x-show="locatedPrecinct" class="button">
+            Start Over
+          </div>
         </div>
+      </form>
+
+      <div x-show="locatedPrecinct" class="results-container">
+        <ul
+          class="tabs-list"
+          id="defaultTab"
+          data-tabs-toggle="#defaultTabContent"
+          role="tablist"
+        >
+          <li class="tab-item">
+            <button
+              @click="openTab = 'committeePerson'"
+              data-tabs-target="#about"
+              type="button"
+              role="tab"
+              aria-controls="about"
+              aria-selected="true"
+              :class="openTab === 'committeePerson' ? 'tab-button active' : 'tab-button'"
+            >
+              Committee Persons
+            </button>
+          </li>
+          <li class="tab-item">
+            <button
+              @click="openTab = 'pollingLocation'"
+              data-tabs-target="#about"
+              type="button"
+              role="tab"
+              aria-controls="about"
+              aria-selected="true"
+              :class="openTab === 'pollingLocation' ? 'tab-button active' : 'tab-button'"
+            >
+              Polling Location
+            </button>
+          </li>
+        </ul>
+        <div id="defaultTabContent">
+          <div
+            :class="openTab === 'committeePerson' ? 'tab-content' : 'tab-content hidden'"
+          >
+            <a href="#">
+              <h5
+                x-text="`Precinct ${precinct.districtName}`"
+                class="title"
+              ></h5>
+            </a>
+            <template x-for="person in precinct.pcp.committeePersons">
+              <p x-text="person" class="subtitle"></p>
+            </template>
+            <p class="text">
+              You can reach your committee persons by phone or email
+            </p>
+            <p
+              x-text="`Call: +17245551234 x${precinct.pcp.extension}`"
+              class="text"
+            ></p>
+            <p x-text="`Email: ${precinct.pcp.email}`" class="text"></p>
+            <div class="button-group">
+              <a
+                :href="`tel:+17245551234,${precinct.pcp.extension}`"
+                class="button"
+                >Call</a
+              >
+              <a :href="`mailto:${precinct.pcp.email}`" class="button">Email</a>
+            </div>
+          </div>
+          <div
+            :class="openTab === 'pollingLocation' ? 'tab-content' : 'tab-content hidden'"
+            id="services"
+            role="tabpanel"
+            aria-labelledby="services-tab"
+          >
+            <h2 x-text="precinct.location" class="title"></h2>
+            <div class="text-center">
+              <p class="text" x-text="precinct.address_street"></p>
+              <p
+                class="text"
+                x-text="`${precinct.address_munic}, PA ${precinct.address_zip}`"
+              ></p>
+            </div>
+            <img :src="precinct.photo_link" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <div x-show="searchResults.length" class="results-container">
+        <div class="header">
+          <h5 class="title">Matching Addresses</h5>
+          <div @click="clearResults()" class="button-secondary">
+            Clear Results
+          </div>
+        </div>
+        <div class="address-list-container">
+          <ul class="address-list" role="list">
+            <template x-for="result in searchResults">
+              <li class="address-item">
+                <div class="address-content">
+                  <p
+                    @click="getAddressDetails(result.text, result.magicKey)"
+                    x-text="result.text"
+                    class="address-text"
+                  ></p>
+                </div>
+              </li>
+            </template>
+          </ul>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 <script>
   const app = () => {
     return {
-      address: '',
+      address: "",
       loading: false,
       precinct: {
-        districtName: '',
-        address_street: '',
-        address_munic: '',
-        address_zip: '',
-        photo_link: '',
+        districtName: "",
+        address_street: "",
+        address_munic: "",
+        address_zip: "",
+        photo_link: "",
         pcp: {
           committeePersons: [],
-          extension: '',
-          email: '',
-        }
+          extension: "",
+          email: "",
+        },
       },
       searchResults: [],
-      openTab: 'committeePerson',
+      openTab: "committeePerson",
       locatedPrecinct: false,
-      search: function() {
+      search: function () {
         if (this.address.length === 0) {
-          this.clearResults()
-        }
-        else if (this.address.length > 2) {
-          this.searchAddress()
+          this.clearResults();
+        } else if (this.address.length > 2) {
+          this.searchAddress();
         }
       },
       clearResults() {
-        this.address = ''
-        this.searchResults = []
-        this.locatedPrecinct = false
+        this.address = "";
+        this.searchResults = [];
+        this.locatedPrecinct = false;
       },
       searchAddress() {
-        this.locatedPrecinct = false
+        this.locatedPrecinct = false;
         const url = `/wp-json/ptrc/v1/pcp-search?address=${this.address}`;
         const options = {
           method: "GET",
           headers: {
-            "Accept": "application/json",
+            Accept: "application/json",
             "Content-Type": "application/json;charset=UTF-8",
-          }
+          },
         };
         fetch(url, options)
           .then((response) => response.json())
           .then((data) => {
-            this.searchResults = data
+            this.searchResults = data;
           })
-          .catch(error => {
-            console.log(error)
-            alert('Uh oh!')
-          })
+          .catch((error) => {
+            console.log(error);
+            alert("Uh oh!");
+          });
       },
       getAddressDetails(location, magicKey) {
-
-        this.loading = true
-        this.searchResults = []
+        this.loading = true;
+        this.searchResults = [];
 
         const url = `/wp-json/ptrc/v1/pcp-address-details?location=${location}&magicKey=${magicKey}`;
         const options = {
           method: "GET",
           headers: {
-            "Accept": "application/json",
+            Accept: "application/json",
             "Content-Type": "application/json;charset=UTF-8",
-          }
+          },
         };
 
         fetch(url, options)
           .then((response) => response.json())
           .then((data) => {
-            this.precinct = data
-            this.loading = false
-            this.locatedPrecinct = true
-            console.log(data)
+            this.precinct = data;
+            this.loading = false;
+            this.locatedPrecinct = true;
+            console.log(data);
           })
-          .catch(error => {
-            console.log(error)
-            alert('Uh oh!')
-            this.loading = false
-          })
-      }
-    }
-  }
+          .catch((error) => {
+            console.log(error);
+            alert("Uh oh!");
+            this.loading = false;
+          });
+      },
+    };
+  };
 </script>

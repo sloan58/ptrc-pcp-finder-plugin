@@ -4,7 +4,7 @@
 	Plugin Name: PCP Finder
 	Plugin URI:
 	Description: Allows users to search by address for their Precinct Committee Person
-	Version: 0.1
+	Version: 0.2
 	Author: Marty Sloan
 	Author URI: https://petersrepublicans.com
 	License: GPLv2
@@ -23,8 +23,6 @@ if (!function_exists('write_log')) {
     }
 
 }
-// Add Tailwind CSS styles
-wp_enqueue_style( 'ptrc-tailwindcss', plugin_dir_url( __FILE__ ) . 'dist/output.css' );
 
 // Register plugin
 add_shortcode( 'ptrc_pcp_finder', 'ptrc_pcp_finder' );
