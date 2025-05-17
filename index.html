@@ -15,7 +15,8 @@
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    max-width: 36rem; /* max-w-xl */
+    max-width: 36rem;
+    text-align: center;
   }
 
   /* Search form */
@@ -28,16 +29,7 @@
 
   .search-container {
     position: relative;
-  }
-
-  .search-icon {
-    position: absolute;
-    top: 50%;
-    left: 0.75rem;
-    transform: translateY(-50%);
-    width: 1.25rem;
-    height: 1.25rem;
-    color: #6b7280;
+    margin-bottom: 0.5rem;
   }
 
   .search-input {
@@ -57,11 +49,31 @@
     box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
   }
 
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 0.75rem;
+    transform: translateY(-50%);
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #6b7280;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .start-over {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
   /* Buttons */
   .button {
     cursor: pointer;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
     font-weight: 500;
@@ -70,6 +82,7 @@
     background-color: #1d4ed8;
     border-radius: 0.5rem;
     border: none;
+    transition: background 0.2s;
   }
 
   .button:hover {
@@ -85,57 +98,75 @@
     color: #2563eb;
     background: none;
     text-decoration: underline;
+    cursor: pointer;
   }
 
   .button-secondary:hover {
     color: #1d4ed8;
   }
 
+  .button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    justify-content: center;
+  }
+
   /* Results container */
   .results-container {
-    margin-top: 0.25rem;
+    margin-top: 0.75rem;
     width: 100%;
     background-color: white;
     border: 1px solid #e5e7eb;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.08);
+    overflow: hidden;
   }
 
   /* Tabs */
+  .tabs-header {
+    display: flex;
+    background: #f3f4f6;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0;
+    margin: 0;
+  }
   .tabs-list {
+    display: flex;
+    width: 100%;
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
-    font-size: 0.875rem;
-    font-weight: 500;
-    text-align: center;
-    color: #6b7280;
-    border-bottom: 1px solid #e5e7eb;
-    background-color: #f9fafb;
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
+    background: none;
+    border: none;
   }
-
   .tab-item {
-    flex-basis: 50%;
+    flex: 1 1 0;
+    display: flex;
+    justify-content: center;
   }
-
   .tab-button {
-    display: inline-block;
-    padding: 1rem;
-    text-align: center;
+    width: 100%;
+    padding: 1rem 0;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #374151;
     cursor: pointer;
+    transition: border 0.2s, color 0.2s;
   }
-
   .tab-button.active {
     color: #2563eb;
+    border-bottom: 2.5px solid #2563eb;
+    background: #fff;
+    z-index: 1;
   }
-
-  .tab-button:hover:not(.active) {
-    color: #2563eb;
+  .tab-button:not(.active):hover {
+    color: #1d4ed8;
+    background: #f1f5f9;
   }
 
   /* Tab content */
@@ -143,9 +174,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2.5rem;
+    padding: 2.5rem 1.5rem 2rem 1.5rem;
+    background: #f9fafb;
   }
-
   .tab-content.hidden {
     display: none;
   }
@@ -153,24 +184,24 @@
   /* Typography */
   .title {
     margin-bottom: 0.5rem;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 700;
     color: #111827;
+    text-align: center;
   }
-
   .subtitle {
     font-size: 1.25rem;
     font-weight: 600;
     color: #111827;
+    text-align: center;
   }
-
   .text {
     font-size: 1rem;
     font-weight: 400;
     color: #111827;
     margin-bottom: 0.75rem;
+    text-align: center;
   }
-
   .text:last-child {
     margin-bottom: 0;
   }
@@ -181,23 +212,20 @@
     padding: 0;
     margin: 0;
   }
-
   .address-item {
-    padding: 0.75rem 0;
+    padding: 0.75rem 0 0.75rem 1.5rem;
     border-bottom: 1px solid #e5e7eb;
   }
-
   .address-item:last-child {
     border-bottom: none;
   }
-
   .address-text {
-    font-size: 0.875rem;
+    font-size: 0.95rem;
     font-weight: 500;
     color: #111827;
     cursor: pointer;
+    text-align: left;
   }
-
   .address-text:hover {
     text-decoration: underline;
   }
@@ -210,7 +238,6 @@
     height: 1rem;
     animation: spin 1s linear infinite;
   }
-
   @keyframes spin {
     from {
       transform: rotate(0deg);
@@ -220,6 +247,14 @@
     }
   }
 
+  /* Card header divider */
+  .card-divider {
+    height: 1px;
+    background: #e5e7eb;
+    width: 100%;
+    margin: 0;
+  }
+
   /* Dark mode styles */
   @media (prefers-color-scheme: dark) {
     .search-input {
@@ -227,32 +262,66 @@
       border-color: #4b5563;
       color: white;
     }
-
     .search-input::placeholder {
       color: #9ca3af;
     }
-
     .results-container {
       background-color: #374151;
       border-color: #4b5563;
     }
-
-    .tabs-list {
-      background-color: #1f2937;
+    .tabs-header {
+      background: #1f2937;
       border-color: #4b5563;
-      color: #9ca3af;
     }
-
+    .tab-button {
+      color: #d1d5db;
+      background: none;
+    }
+    .tab-button.active {
+      color: #60a5fa;
+      background: #374151;
+      border-bottom: 2.5px solid #60a5fa;
+    }
+    .tab-button:not(.active):hover {
+      color: #93c5fd;
+      background: #23272f;
+    }
+    .tab-content {
+      background: #23272f;
+    }
     .title,
     .subtitle,
     .text,
     .address-text {
       color: white;
     }
-
     .address-item {
       border-color: #4b5563;
     }
+    .card-divider {
+      background: #4b5563;
+    }
+  }
+
+  .clear-results {
+    padding-left: 1rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .finder-title {
+    display: inline-block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #b91c1c;
+    border: 2px solid #b91c1c;
+    border-radius: 0.5rem;
+    padding: 0.25em 1em;
+    margin-bottom: 1.5rem;
+    background: #fff;
+    letter-spacing: 0.02em;
+    margin-left: auto;
+    margin-right: auto;
   }
 </style>
 <link rel="stylesheet" href="/dist/output.css" />
@@ -261,8 +330,8 @@
 <div x-data="app()" x-cloak>
   <div class="container">
     <div class="content-wrapper">
+      <h2 class="finder-title">Finder App</h2>
       <form>
-        <label for="default-search" class="search-label">Search</label>
         <div class="search-container">
           <div class="search-icon">
             <svg
@@ -288,64 +357,71 @@
             class="search-input"
             placeholder="Enter your home address"
           />
-          <button x-show="loading" type="submit" class="button">
-            <svg
-              class="spinner"
-              viewBox="0 0 100 101"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                fill="#E5E7EB"
-              />
-              <path
-                d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                fill="currentColor"
-              />
-            </svg>
-            Loading...
-          </button>
-          <div @click="clearResults()" x-show="locatedPrecinct" class="button">
-            Start Over
-          </div>
+        </div>
+        <button x-show="loading" type="submit" class="button start-over">
+          <svg
+            class="spinner"
+            viewBox="0 0 100 101"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+              fill="#E5E7EB"
+            />
+            <path
+              d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+              fill="currentColor"
+            />
+          </svg>
+          Loading...
+        </button>
+        <div
+          @click="clearResults()"
+          x-show="locatedPrecinct"
+          class="button start-over"
+        >
+          Start Over
         </div>
       </form>
 
       <div x-show="locatedPrecinct" class="results-container">
-        <ul
-          class="tabs-list"
-          id="defaultTab"
-          data-tabs-toggle="#defaultTabContent"
-          role="tablist"
-        >
-          <li class="tab-item">
-            <button
-              @click="openTab = 'committeePerson'"
-              data-tabs-target="#about"
-              type="button"
-              role="tab"
-              aria-controls="about"
-              aria-selected="true"
-              :class="openTab === 'committeePerson' ? 'tab-button active' : 'tab-button'"
-            >
-              Committee Persons
-            </button>
-          </li>
-          <li class="tab-item">
-            <button
-              @click="openTab = 'pollingLocation'"
-              data-tabs-target="#about"
-              type="button"
-              role="tab"
-              aria-controls="about"
-              aria-selected="true"
-              :class="openTab === 'pollingLocation' ? 'tab-button active' : 'tab-button'"
-            >
-              Polling Location
-            </button>
-          </li>
-        </ul>
+        <div class="tabs-header">
+          <ul
+            class="tabs-list"
+            id="defaultTab"
+            data-tabs-toggle="#defaultTabContent"
+            role="tablist"
+          >
+            <li class="tab-item">
+              <button
+                @click="openTab = 'committeePerson'"
+                data-tabs-target="#about"
+                type="button"
+                role="tab"
+                aria-controls="about"
+                aria-selected="true"
+                :class="openTab === 'committeePerson' ? 'tab-button active' : 'tab-button'"
+              >
+                Committee Persons
+              </button>
+            </li>
+            <li class="tab-item">
+              <button
+                @click="openTab = 'pollingLocation'"
+                data-tabs-target="#about"
+                type="button"
+                role="tab"
+                aria-controls="about"
+                aria-selected="true"
+                :class="openTab === 'pollingLocation' ? 'tab-button active' : 'tab-button'"
+              >
+                Polling Location
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div class="card-divider"></div>
         <div id="defaultTabContent">
           <div
             :class="openTab === 'committeePerson' ? 'tab-content' : 'tab-content hidden'"
@@ -398,7 +474,7 @@
       <div x-show="searchResults.length" class="results-container">
         <div class="header">
           <h5 class="title">Matching Addresses</h5>
-          <div @click="clearResults()" class="button-secondary">
+          <div @click="clearResults()" class="button-secondary clear-results">
             Clear Results
           </div>
         </div>
