@@ -11,7 +11,7 @@ return [
     ],
     'A2' => [
         'committeePersons' => [
-            'Ariele Battista',
+            'Stephanie Rossi',
             'Sam Perlmutter'
         ],
         'extension' => '1002',
@@ -19,7 +19,7 @@ return [
     ],
     'A3' => [
         'committeePersons' => [
-            'Allan Bruce',
+            'Brian Marcinko',
             'Jodie Sherman'
         ],
         'extension' => '1003',
@@ -35,7 +35,7 @@ return [
     ],
     'B2' => [
         'committeePersons' => [
-            'Anton Knaus',
+            'Tony Knaus',
             'Lawna Blankenship'
         ],
         'extension' => '1005',
@@ -44,15 +44,15 @@ return [
     'B3' => [
         'committeePersons' => [
             'Randy O\'Connell',
-            'Kathleen Chaudhari'
+            'Barb Trahern'
         ],
         'extension' => '1006',
         'email' => 'b3@petersrepublicans.com'
     ],
     'C1' => [
         'committeePersons' => [
-            'Lori McRoberts',
-            'Anthony Ricci'
+            'Tyler Tommarello',
+            'Michelle Fellin'
         ],
         'extension' => '1007',
         'email' => 'c1@petersrepublicans.com'
@@ -60,30 +60,30 @@ return [
     'C2' => [
         'committeePersons' => [
             'Nick Gagianas',
-            'Wendy Bowes'
+            'Lori McElroy'
         ],
         'extension' => '1008',
         'email' => 'c2@petersrepublicans.com'
     ],
     'C3' => [
         'committeePersons' => [
-            'Mike Holtcamp',
-            'Leigha Selvoski'
+            'Jim Fellen',
+            'Sas Argentine'
         ],
         'extension' => '1009',
         'email' => 'c3@petersrepublicans.com'
     ],
     'D1' => [
         'committeePersons' => [
-            'Tabitha Cavanagh',
-            'Alex O\'Neal'
+            'Derek Hensley',
+            'Christina Romano'
         ],
         'extension' => '1010',
         'email' => 'd1@petersrepublicans.com'
     ],
     'D2' => [
         'committeePersons' => [
-            'Chuck Steeber',
+            'Vacant',
             'Tracy Melograne'
         ],
         'extension' => '1011',
